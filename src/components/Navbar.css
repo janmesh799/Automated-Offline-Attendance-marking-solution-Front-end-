@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    /* position: fixed; */
+
+}
+
+.wordmark {
+    width: 22rem;
+}
+
+.nav-link button{
+    width: 10.5rem;
+    height: 4rem;
+    margin: 0rem 2rem;
+    align-self: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #416D47;
+    background: none;
+    border: none;
+    font-family: 'Lato', sans-serif;
+}
+.active-nav-link button{
+    background-color: #416D47;
+    border-radius: 2rem;
+    color: white;
+
+}
+.nav-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    margin: 0rem;
+}
