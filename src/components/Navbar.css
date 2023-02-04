@@ -18,11 +18,12 @@
     margin: 0rem 2rem;
     align-self: center;
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 520;
     color: #416D47;
     background: none;
     border: none;
     font-family: 'Lato', sans-serif;
+    cursor:pointer;
 }
 .active-nav-link button{
     background-color: #416D47;
