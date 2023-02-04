@@ -1,0 +1,32 @@
+.about {
+    font-family: 'Lato', sans-serif;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.about_background{
+    /* flex-direction: row; */
+    background-image: url("../static/graphics/About_Page_BG.png");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100vw 120vh;
+    background-position:right;
+    margin: -25vh;
+}
+.about-text{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    /* height: 60vh; */
+    margin: 10vh 24vw;
+}
+.about-text p{
+    text-align: center;
+}
+.card-section{
+    display: flex;
+    flex-direction: row;
+    width: 150%;
+    overflow: scroll;
+}

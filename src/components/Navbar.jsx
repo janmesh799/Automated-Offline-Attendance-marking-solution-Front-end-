@@ -1,8 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom"
 import './Navbar.css'
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setpage } from '../controllers/pageController';
 import Wordmark from "../static/graphics/Wordmark.png"
 const Navbar = () => {
-  const page = "home";
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.page).activePage.activePage;
+  // console.log(page)
+  useEffect(()=>{
+    
+  })
+  // const page = "home";
   return (
     <div className="navbar">
       {// for Logo
@@ -13,19 +23,19 @@ const Navbar = () => {
       {
         //for tabs
       }
-      <div style={{display:"flex"}}>
+      <div style={{ display: "flex" }}>
         <ul className="nav-links">
           <Link className={page === "home" ? 'active-nav-link nav-link' : 'nav-link'} to='/'>
-            <button> Home</button>
+            <button onClick={() => { dispatch(setpage("home")) }} > Home</button>
           </Link>
           <Link className={page === "about" ? 'active-nav-link nav-link' : 'nav-link'} to='/about'>
-            <button> About Us</button>
+            <button onClick={() => { dispatch(setpage("about")) }}> About Us</button>
           </Link>
           <Link className={page === "login" ? 'active-nav-link nav-link' : 'nav-link'} to='/login'>
-            <button> Login</button>
+            <button onClick={() => { dispatch(setpage("login")) }}> Login</button>
           </Link>
           <Link className={page === "signup" ? 'active-nav-link nav-link' : 'nav-link'} to='/signup'>
-            <button> Signup</button>
+            <button onClick={() => { dispatch(setpage("signup")) }}> Signup</button>
           </Link>
         </ul>
       </div>

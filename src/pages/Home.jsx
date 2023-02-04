@@ -1,11 +1,23 @@
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import { useDispatch } from 'react-redux';
+import { setpage } from '../controllers/pageController';
 import Logo from "../static/graphics/Logo.png"
 import Classroom from "../static/graphics/Classroom.png"
 
 import './Home.css'
+import Navbar from '../components/Navbar'
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setpage('home'))
+
+  })
+
   return (<>
+    <Navbar/>
     <div className='home'>
       <div className='home-component'>
         <div className='logo'>
