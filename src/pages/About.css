@@ -12,7 +12,7 @@
     background-repeat: no-repeat;
     background-size: 100vw 120vh;
     background-position:right;
-    margin: -25vh;
+    /* margin: -15vh 0vw; */
 }
 .about-text{
     display: flex;
@@ -27,6 +27,7 @@
 .card-section{
     display: flex;
     flex-direction: row;
-    width: 150%;
-    overflow: scroll;
+    width: 100%;
+    /* overflow: scroll; */
+    margin-top: -5rem;
 }
