@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { useDispatch } from 'react-redux';
 import { setpage } from '../controllers/pageController';
-import About_page_card from '../components/About_page_card';
+import AboutPageCard from '../components/AboutPageCard';
 import Classroom_2 from "../static/graphics/Classroom_2.png"
 import Report from "../static/graphics/Report.png"
 import Phone from "../static/graphics/Phone.png"
@@ -50,7 +50,9 @@ const About = () => {
             <div className='card-section'>
               {card_Data.map((elem) => {
                 return (
-                  <About_page_card elem={elem} />
+                  <>
+                    <AboutPageCard elem={elem} />
+                  </>
                 )
               })}
             </div>
