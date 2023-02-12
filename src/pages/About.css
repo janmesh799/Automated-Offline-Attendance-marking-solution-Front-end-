@@ -17,12 +17,15 @@
 .about-text{
     display: flex;
     justify-content: center;
+    flex-direction:column;
     font-size: 2rem;
     /* height: 60vh; */
-    margin: 10vh 24vw;
+    margin: 0vh 24vw;
 }
 .about-text p{
+    font-weight:bold;
     text-align: center;
+
 }
 .card-section{
     display: flex;
@@ -30,4 +33,7 @@
     width: 100%;
     /* overflow: scroll; */
     margin-top: -5rem;
+}
+.about-team-img{
+    width: 100%;
 }
