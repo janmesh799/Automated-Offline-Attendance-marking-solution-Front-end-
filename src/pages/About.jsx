@@ -6,6 +6,7 @@ import AboutPageCard from '../components/AboutPageCard';
 import Classroom_2 from "../static/graphics/Classroom_2.png"
 import Report from "../static/graphics/Report.png"
 import Phone from "../static/graphics/Phone.png"
+import Team from "../static/graphics/Team.png"
 import Schedule from "../static/graphics/Schedule.png"
 import './About.css'
 const About = () => {
@@ -42,8 +43,11 @@ const About = () => {
       <div className='' >
         <Navbar />
         <div className='about '>
+
           <div className='about-text'>
-            <p>We are a team of 7 students from IIITDM Jabalpur. Each of us belonging to different branches collaborating to make an attendance app for universities, colleges, and schools.
+
+            <img alt='team' className='about-team-img' src={Team} />
+            <p>We are a team of 7 students from <strong> IIITDM Jabalpur</strong>. Each of us belonging to different branches collaborating to make an attendance app for universities, colleges, and schools.
             </p>
           </div>
           <div className='about_background'>
@@ -51,7 +55,7 @@ const About = () => {
               {card_Data.map((elem) => {
                 return (
                   <>
-                    <AboutPageCard elem={elem} />
+                    <AboutPageCard key={Math.random()*1000} elem={elem} />
                   </>
                 )
               })}
