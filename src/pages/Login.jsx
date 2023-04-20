@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setpage } from '../controllers/pageController';
 import Login_img from '../static/graphics/Login.png'
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginTeacher } from '../controllers/UserController';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authToken = useSelector(state=>state.user.authToken)
   const [creds, setCreds] = useState({
     email: "",
     password: ""
@@ -19,16 +23,19 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    alert("form submitted")
+    // console.log(creds.email, creds.password)
+    dispatch(LoginTeacher({ email: creds.email, password: creds.password }))
   }
 
+  // let token = localStorage.getItem('authToken');
   const [showPassword, setshowPassword] = useState(false);
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setpage('login'))
-
-  })
+    // console.log("authToken => ", authToken)
+    if (authToken) {
+      navigate('/allCourses');
+    }
+  },[authToken,navigate,dispatch])
 
   return (
     <>
@@ -48,7 +55,7 @@ const Login = () => {
 
                 <div className='bottom-form'  >
                   <div  >
-                    <input onClick={() => { setshowPassword(!showPassword) }} checked={showPassword} type='checkbox' label="showpassword" />
+                    <input onChange={() => { }} onClick={() => { setshowPassword(!showPassword) }} checked={showPassword} type='checkbox' label="showpassword" />
                     <span >Show Password</span>
                   </div>
                   <Link to='/forgotpassword' style={{ alignSelf: "center", justifySelf: "flex-end", marginRight: "7rem" }}  > Forgot Password </Link>

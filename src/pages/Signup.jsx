@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Signup_img from "../static/graphics/Signup.png"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setpage } from '../controllers/pageController';
 import "./Signup.css"
+import { SignupTeacher } from '../controllers/UserController';
 
 
 const Signup = () => {
-
+  const navigate = useNavigate();
+  const authToken = useSelector(state => state.user.authToken);
   const [creds, setCreds] = useState({
-    name:"",
+    name: "",
     email: "",
     password: "",
     cpassword: ""
@@ -23,26 +26,28 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (creds.password !== creds.cpassword) {
-      alert('password and Show password should be same');
+      alert('password and confirm password should be same');
       return;
     }
-    alert("form submitted")
+    dispatch(SignupTeacher({ name: creds.name, email: creds.email, password: creds.password }))
   }
-  
+
   const [showPassword, setshowPassword] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setpage('signup'))
-
-  })
+    if (authToken) {
+      navigate('/allCourses');
+    }
+  }, [ authToken])
 
   return (
     <>
       <div className='background_2' >
-      
+
 
         <Navbar />
-      
+
         <div className='signup'>
           <div className='signup-image'>
             <img src={Signup_img} alt="SignupImage" />
@@ -57,7 +62,7 @@ const Signup = () => {
                 <input onChange={handleChange} name='password' value={creds.password} title='password' type='password' placeholder='Password' />
                 <input onChange={handleChange} name='cpassword' value={creds.cpassword} title='Confirm Password' type={showPassword ? 'text' : 'password'} placeholder='Confirm Password' />
                 <div className='show-password-check-box' >
-                  <input onClick={() => { setshowPassword(!showPassword) }} checked={showPassword} style={{ width: '5%', marginLeft: "7rem" }} type='checkbox' label="showpassword" />
+                  <input onChange={() => { }} onClick={() => { setshowPassword(!showPassword) }} checked={showPassword} style={{ width: '5%', marginLeft: "7rem" }} type='checkbox' label="showpassword" />
                   <span style={{ alignSelf: "center" }}>Show Password</span>
                 </div>
                 <button>Create Acccount</button>

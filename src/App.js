@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import Signup from "./pages/Signup"
 import About from "./pages/About"
 import Notfound from './pages/Notfound';
+import AllCourses from './pages/AllCourses';
 
 function App() {
   return (
@@ -18,13 +19,15 @@ function App() {
           {
 
             // <Navbar />
-          } 
+          }
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/about' element={<About />} />
             <Route path='/*' element={<Notfound />} />
+            <Route path='/allCourses' element={<AllCourses />} />
+            
           </Routes>
         </Router>
       </Provider>
