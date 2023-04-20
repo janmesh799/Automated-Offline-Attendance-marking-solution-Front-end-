@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux';
 import { setpage } from '../controllers/pageController';
@@ -11,13 +11,17 @@ import Navbar from '../components/Navbar'
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(setpage('home'))
-
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      navigate('/teacherhome');
+    }
   })
 
   return (<>
-    <Navbar/>
+    <Navbar />
     <div className='home'>
       <div className='home-component'>
         <div className='logo'>

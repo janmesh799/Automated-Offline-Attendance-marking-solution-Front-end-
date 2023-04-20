@@ -1,0 +1,18 @@
+.All-Courses-Container {
+    display: grid;
+    grid-template-columns: 5vw 50vw;
+}
+
+.side-tab {
+    background-color: #D9E2DA;
+    height: 100vh;
+}
+.icon-tab{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.icon{
+    width: 100%;
+}
