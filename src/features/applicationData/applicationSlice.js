@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     page: null,
-    dashboardPage: null
+    dashboardPage: "allcourses"
 
 }
 
