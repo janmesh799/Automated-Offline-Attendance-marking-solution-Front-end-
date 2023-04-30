@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/'
-// const API_URL = 'https://upasthit-backend.vercel.app/api/'
+
+// const API_URL = 'http://localhost:5000/api/'
+const API_URL = 'https://upasthit-backend.vercel.app/api/'
 
 //register user
 const signup = async (userData) => {
