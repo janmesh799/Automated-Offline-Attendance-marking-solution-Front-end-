@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
 import Signup_img from "../static/graphics/Signup.png"
 import { useDispatch, useSelector } from 'react-redux';
-import { setpage } from '../controllers/pageController';
+import Spinner from '../components/Spinner';
 import "./Signup.css"
-import { SignupTeacher } from '../controllers/UserController';
+import { toast } from 'react-toastify'
+
+import { setPage } from '../features/applicationData/applicationSlice';
+import { reset, signup } from '../features/auth/authSlice';
 
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const authToken = useSelector(state => state.user.authToken);
+  // const authToken = null
   const [creds, setCreds] = useState({
     name: "",
     email: "",
@@ -18,28 +20,48 @@ const Signup = () => {
     cpassword: ""
   });
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const {  authToken, isLoading, isError,  message } = useSelector((
+    state) => state.auth
+  )
+  useEffect(() => {
+    dispatch(setPage('signup'));
+    if (isError) {
+      // console.log("yes")
+      toast.error(message);
+    }
+    if (authToken) {
+      navigate('/dashboard')
+    }
+    dispatch(reset());
+  }, [isError,authToken, message, navigate, dispatch])
+
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCreds({ ...creds, [name]: value })
+    setCreds((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (creds.password !== creds.cpassword) {
-      alert('password and confirm password should be same');
-      return;
+    if (password === cpassword) {
+      const data = { name, email, password };
+
+      dispatch(signup(data))
     }
-    dispatch(SignupTeacher({ name: creds.name, email: creds.email, password: creds.password }))
+  }
+  const { name, email, password, cpassword } = creds;
+  const [showPassword, setshowPassword] = useState(false);
+  if (isLoading) {
+    return (
+      <Spinner />
+    )
   }
 
-  const [showPassword, setshowPassword] = useState(false);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setpage('signup'))
-    if (authToken) {
-      navigate('/allCourses');
-    }
-  }, [ authToken])
 
   return (
     <>

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import { useDispatch } from 'react-redux';
-import { setpage } from '../controllers/pageController';
 import AboutPageCard from '../components/AboutPageCard';
 import Classroom_2 from "../static/graphics/Classroom_2.png"
 import Report from "../static/graphics/Report.png"
@@ -9,11 +7,13 @@ import Phone from "../static/graphics/Phone.png"
 import Team from "../static/graphics/Team.png"
 import Schedule from "../static/graphics/Schedule.png"
 import './About.css'
+import { useDispatch } from 'react-redux';
+import { setPage } from '../features/applicationData/applicationSlice';
 const About = () => {
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setpage('about'))
-
+    dispatch(setPage('about'))
   })
   const card_Data = [
     {
@@ -55,7 +55,7 @@ const About = () => {
               {card_Data.map((elem) => {
                 return (
                   <>
-                    <AboutPageCard key={Math.random()*1000} elem={elem} />
+                    <AboutPageCard key={elem.heading.length} elem={elem} />
                   </>
                 )
               })}

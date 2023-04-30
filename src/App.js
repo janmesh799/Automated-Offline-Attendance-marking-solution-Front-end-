@@ -2,16 +2,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import { Provider } from 'react-redux';
-import { store } from "./store/store"
-// import Navbar from './components/Navbar';
+import { store } from "./app/store";
 import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Signup from "./pages/Signup"
 import About from "./pages/About"
 import Notfound from './pages/Notfound';
-import AllCourses from './pages/AllCourses';
+
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
+import Dashboard from './pages/Dashboard';
 
 function App() {
+  // const auth = true;
   return (
     <div className="App">
       <Provider store={store}>
@@ -26,10 +30,10 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/about' element={<About />} />
             <Route path='/*' element={<Notfound />} />
-            <Route path='/allCourses' element={<AllCourses />} />
-            
+            <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
-        </Router>
+          </Router>
+          <ToastContainer />
       </Provider>
     </div>
   );

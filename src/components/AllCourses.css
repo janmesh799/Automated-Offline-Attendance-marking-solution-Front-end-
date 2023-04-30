@@ -1,0 +1,70 @@
+
+.courses-parent-box {
+    /* background-color: #416d4727 !important; */
+    border-radius: 2rem 2rem 0rem 0rem;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 0rem;
+    flex-direction: column;
+
+}
+
+
+#courses {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#courses td,
+#courses th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center !important;
+}
+
+#courses tr:nth-child(even) {
+    background-color: white;
+}
+
+#courses tr:nth-child(odd) {
+    background-color: #416d4727;
+    ;
+}
+
+#courses tr {
+    text-align: center;
+}
+
+#courses tr:hover {
+    background-color: #ddd;
+
+}
+
+#courses th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #416d4727;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#courses td button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0rem 0.5rem;
+    color: #416D47;
+}
+.add-course-label {
+    background-color: #416D47;
+    height: 3.5rem;
+    border-radius: 0rem 0rem 2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+
+}
