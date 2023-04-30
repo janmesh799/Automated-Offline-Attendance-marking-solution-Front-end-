@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 // const API_URL = 'http://localhost:5000/api/'
 const API_URL = 'https://upasthit-backend.vercel.app/api/'
 
@@ -54,7 +55,7 @@ const getTeacherByAuthToken = async () => {
 
 //logout user
 const logout = async () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('authToken')
 }
 const authService = {
     signup,

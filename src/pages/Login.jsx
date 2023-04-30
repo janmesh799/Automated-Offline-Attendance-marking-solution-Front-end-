@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 import { useDispatch, useSelector } from 'react-redux';
 import Login_img from '../static/graphics/Login.png'
 import './Login.css'
-import { reset, login } from "../features/auth/authSlice"
+import { login } from "../features/auth/authSlice"
 import Spinner from '../components/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
@@ -35,11 +35,10 @@ const Login = () => {
       // console.log("yes")
       toast.error(message);
     }
-    if (isSuccess || user) {
-      console.log(isSuccess, user)
+    if (authToken) {
       navigate('/')
     }
-    dispatch(reset());
+    // dispatch(reset());
   }, [user, authToken, isError, isSuccess, message, navigate, dispatch])
 
   const handleSubmit = (e) => {

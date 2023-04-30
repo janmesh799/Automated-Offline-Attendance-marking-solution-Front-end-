@@ -67,6 +67,7 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => {
+            state.authToken = null
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
@@ -126,8 +127,6 @@ export const authSlice = createSlice({
                 }
                 state.isLoading = false
 
-
-                // if(action.payload.)
             })
     }
 })

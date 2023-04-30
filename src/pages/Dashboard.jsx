@@ -7,50 +7,36 @@ import SideIconTab from './SideIconTab';
 import { getTeacherByAuthToken } from '../features/auth/authSlice';
 import { setPage } from '../features/applicationData/applicationSlice';
 import DashboardHeader from '../components/DashboardHeader';
+import Attendance from '../components/Attendance';
+import Profile from '../components/Profile';
+import Setting from '../components/Setting';
 // import store from "../store/store"
 
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const dashboardPage = useSelector((state) => state.application.dashboardPage)
     const { authToken } = useSelector((state) => state.auth);
-
-    // const logoutHandler = () => {
-    //     localStorage.removeItem('authToken');
-    //     navigate('/login')
-    // }
     useEffect(() => {
-        dispatch(setPage('allCourses'))
+        dispatch(setPage('dashboard'))
         if (authToken) {
             dispatch(getTeacherByAuthToken());
         } else {
             navigate('/')
         }
-
     }, [authToken, navigate, dispatch])
 
     return (
         <div>
-            {
-
-                // <button onClick={logoutHandler}>logout </button>
-                // {JSON.stringify(user)}
-            }
             <div className='All-Courses-Container'>
-                {
-                    //side Tab
-                }
-                <SideIconTab tab="allCourses" />
-                {
-                    // Main Content
-                }
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: '95vw'
-                }}>
-                    <DashboardHeader title='Course' />
-                    <AllCourses />
+                <SideIconTab />
+                <div style={{ display: "flex", flexDirection: "column", width: '95vw' }}>
+                    <DashboardHeader />
+                    {dashboardPage === "allcourses" && <AllCourses />}
+                    {dashboardPage === 'attendance' && <Attendance />}
+                    {dashboardPage === "profile" && <Profile />}
+                    {dashboardPage === "setting" && <Setting />}
                 </div>
             </div>
         </div>
