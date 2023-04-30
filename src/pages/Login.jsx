@@ -1,41 +1,57 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useDispatch, useSelector } from 'react-redux';
-import { setpage } from '../controllers/pageController';
 import Login_img from '../static/graphics/Login.png'
 import './Login.css'
+import { reset, login } from "../features/auth/authSlice"
+import Spinner from '../components/Spinner';
 import { Link, useNavigate } from 'react-router-dom';
-import { LoginTeacher } from '../controllers/UserController';
-
+import { toast } from 'react-toastify'
+import { setPage } from '../features/applicationData/applicationSlice';
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const authToken = useSelector(state=>state.user.authToken)
+  const [showPassword, setshowPassword] = useState(false);
   const [creds, setCreds] = useState({
     email: "",
     password: ""
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCreds({ ...creds, [name]: value })
+    setCreds((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
   }
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { authToken, user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(setPage('login'))
+    if (authToken) {
+      navigate('/dashboard')
+    }
+    if (isError) {
+      // console.log("yes")
+      toast.error(message);
+    }
+    if (isSuccess || user) {
+      console.log(isSuccess, user)
+      navigate('/')
+    }
+    dispatch(reset());
+  }, [user, authToken, isError, isSuccess, message, navigate, dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(creds.email, creds.password)
-    dispatch(LoginTeacher({ email: creds.email, password: creds.password }))
+    const userData = { email, password };
+    dispatch(login(userData))
   }
+  const { email, password } = creds;
 
-  // let token = localStorage.getItem('authToken');
-  const [showPassword, setshowPassword] = useState(false);
-  useEffect(() => {
-    dispatch(setpage('login'))
-    // console.log("authToken => ", authToken)
-    if (authToken) {
-      navigate('/allCourses');
-    }
-  },[authToken,navigate,dispatch])
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <>

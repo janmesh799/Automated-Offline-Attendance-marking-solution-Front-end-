@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux';
-import { setpage } from '../controllers/pageController';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../static/graphics/Logo.png"
 import Classroom from "../static/graphics/Classroom.png"
 
 import './Home.css'
 import Navbar from '../components/Navbar'
+import { setPage } from '../features/applicationData/applicationSlice';
+
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { authToken } = useSelector((state) => state.auth);
+
   useEffect(() => {
-    dispatch(setpage('home'))
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      navigate('/teacherhome');
+    dispatch(setPage('home'))
+    if (authToken) {
+      navigate('/dashboard');
     }
   })
 
