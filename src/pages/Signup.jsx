@@ -23,7 +23,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {  authToken, isLoading, isError,  message } = useSelector((
+  const { authToken, isLoading, isError, message } = useSelector((
     state) => state.auth
   )
   useEffect(() => {
@@ -35,8 +35,7 @@ const Signup = () => {
     if (authToken) {
       navigate('/dashboard')
     }
-    dispatch(reset());
-  }, [isError,authToken, message, navigate, dispatch])
+  }, [isError, authToken, message, navigate, dispatch])
 
 
   const handleChange = (e) => {
@@ -50,8 +49,10 @@ const Signup = () => {
     e.preventDefault();
     if (password === cpassword) {
       const data = { name, email, password };
-
       dispatch(signup(data))
+    }
+    else {
+      toast.error("password and confirm password should be same")
     }
   }
   const { name, email, password, cpassword } = creds;
